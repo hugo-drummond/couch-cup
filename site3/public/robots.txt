@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /couchcupdashboard
+
+Sitemap: https://couchcup.co.za/sitemap.xml

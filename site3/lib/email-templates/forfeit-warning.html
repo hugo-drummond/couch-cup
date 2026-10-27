@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:sans-serif">
+<div style="max-width:600px;margin:0 auto;background:#ffffff;padding:32px 24px;color:#1a1a2e">
+
+  <p style="margin-top:0">Hi {{FIRST_NAME}},</p>
+
+  <p>This is the best time we could find. Your opponent gave more availability, so we've set the match inside their available times — as close as possible to the times you gave us.</p>
+
+  <div style="background:#f8f8f8;border-radius:8px;padding:16px 20px;margin:24px 0;text-align:center">
+    <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin:0 0 6px">Proposed match time</p>
+    <p style="font-size:22px;font-weight:700;color:#db1230;margin:0">{{MATCH_TIME}}</p>
+  </div>
+
+  <p>vs <strong>{{OPPONENT_PSN}}</strong></p>
+
+  <p style="background:#fee;border-left:4px solid #db1230;padding:12px 16px;margin:24px 0;color:#1a1a2e">You need to confirm. Tap <strong>Accept</strong> and the match is locked in — you'll both submit scores afterwards. If you <strong>can't play</strong> this time, you forfeit the match and your opponent advances.</p>
+
+  <table style="margin:24px 0;border-collapse:collapse"><tr>
+    <td style="padding-right:12px">
+      <a href="{{ACCEPT_LINK}}" style="display:inline-block;background:#db1230;color:#fff;padding:14px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px">Accept this time</a>
+    </td>
+    <td>
+      <a href="{{DECLINE_LINK}}" style="display:inline-block;background:#ffffff;color:#1a1a2e;padding:13px 27px;border:1px solid #ccc;border-radius:6px;text-decoration:none;font-weight:600;font-size:16px">I can't play</a>
+    </td>
+  </tr></table>
+
+  <hr style="border:none;border-top:1px solid #e0e0e0;margin:24px 0">
+
+  <p style="margin-bottom:4px">See you on the pitch,</p>
+  <p style="margin-top:0"><strong>The Couch Cup Team</strong><br>
+  <a href="https://couchcup.co.za" style="color:#db1230">couchcup.co.za</a></p>
+
+</div>
+</body>
+</html>

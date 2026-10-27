@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --bg:           #0A1628;
+  --surface:      #112038;
+  --ink:          #FFFFFF;
+  --ink-mid:      #C8D8E8;
+  --ink-light:    #8BA8C4;
+  --accent:       #DC1430;
+  --accent-dark:  #B50F28;
+  --border:       #1E3050;
+  --cream:        #162540;
+  --paper:        #EAF0F7;
+  --paper-mid:    #3D5570;
+  --nav-h:        72px;
+}
+
+.blog-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(10, 22, 40, 0.4);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+.font-display { font-family: var(--font-fraunces), Georgia, serif; }
+
+/* Entrance animations */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes expand {
+  from { max-height: 0; opacity: 0; }
+  to   { max-height: 400px; opacity: 1; }
+}
+
+.rise          { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.rise-2        { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+.rise-3        { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+.rise-4        { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+.rise-5        { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
+.fade-in       { animation: fade 0.5s ease both; }
+
+/* Form slide */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.form-up   { animation: slide-up   0.32s cubic-bezier(0.16,1,0.3,1) both; }
+.form-down { animation: slide-down 0.32s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Rule */
+.rule { border-top: 1px solid var(--border); }
+
+/* Hero backdrop — layered stadium-light glow */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 75% 55% at 78% -12%, rgba(220, 20, 48, 0.13), transparent 62%),
+    radial-gradient(ellipse 55% 45% at 8% 108%, rgba(30, 48, 80, 0.55), transparent 65%),
+    var(--bg);
+}
+
+/* Live pulse dot (broadcast identity) */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(220, 20, 48, 0.5); }
+  50%      { opacity: 0.55; box-shadow: 0 0 0 5px rgba(220, 20, 48, 0); }
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  animation: live-pulse 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+
+/* Broadcast ticker */
+.ticker-track { display: flex; width: max-content; animation: ticker-scroll 30s linear infinite; }
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }

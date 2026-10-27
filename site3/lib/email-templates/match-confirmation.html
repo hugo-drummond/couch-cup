@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:sans-serif">
+<div style="max-width:600px;margin:0 auto;background:#ffffff;padding:32px 24px;color:#1a1a2e">
+
+  <p style="margin-top:0">Hi {{FIRST_NAME}},</p>
+
+  <p>Your match is confirmed. Here's everything you need:</p>
+
+  <table style="margin:0 0 24px;border-collapse:collapse;width:100%">
+    <tr>
+      <td style="padding:12px 16px;background:#f8f8f8;border-radius:8px 8px 0 0;border-bottom:1px solid #e0e0e0">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#888">Opponent</span><br>
+        <span style="font-size:16px;font-weight:700;color:#1a1a2e">{{OPPONENT_PSN}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;background:#f8f8f8;border-radius:0 0 8px 8px">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#888">Match time</span><br>
+        <span style="font-size:18px;font-weight:700;color:#db1230">{{MATCH_TIME}}</span>
+      </td>
+    </tr>
+  </table>
+
+  <h3 style="color:#db1230;margin-top:0">Here's what to do:</h3>
+
+  <h4 style="margin-bottom:4px">1. Add your opponent on PSN</h4>
+  <p style="margin-top:0">Search for <strong>{{OPPONENT_PSN}}</strong> on PlayStation and send a friend request before your match time.</p>
+
+  <h4 style="margin-bottom:4px">2. Start your stream (YouTube or Twitch)</h4>
+  <p style="margin-top:0">Before the match kicks off, go live on YouTube or Twitch:</p>
+  <ol>
+    <li>Open EA FC 26 on your PS5</li>
+    <li>Press the <strong>Create</strong> button on your controller</li>
+    <li>Select <strong>Broadcast → YouTube or Twitch</strong></li>
+    <li>Set the title to: <strong>Couch Cup — [Your PSN] vs {{OPPONENT_PSN}}</strong></li>
+    <li>Hit <strong>Go Live</strong></li>
+    <li>Make sure your broadcast saves a replay/VOD (Save replay in YouTube Studio, or Store Past Broadcasts on Twitch)</li>
+  </ol>
+
+  <h4 style="margin-bottom:4px">3. Send the game request</h4>
+  <p style="margin-top:0">At <strong>{{MATCH_TIME}}</strong>, go to Online Friendlies in EA FC 26 and send your opponent a game request.</p>
+
+  <h4 style="margin-bottom:4px">4. Play your match</h4>
+  <p style="margin-top:0">Play the full match. Keep your stream live until the final whistle.</p>
+
+  <h4 style="margin-bottom:4px">5. Submit your score</h4>
+  <p style="margin-top:0">After the match, you have 4 hours to submit the score and your YouTube or Twitch stream link using the button below.</p>
+
+  <table style="margin:20px 0 8px;border-collapse:collapse">
+    <tr>
+      <td>
+        <a href="{{SCORE_LINK}}" style="display:inline-block;background:#db1230;color:#fff;padding:14px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px">Submit My Score →</a>
+      </td>
+    </tr>
+  </table>
+
+  <p style="font-size:13px;color:#888;margin-top:8px">Miss the 4 hour window and your opponent's submission is accepted as final.</p>
+
+  <p>Good luck! 🏆</p>
+
+  <hr style="border:none;border-top:1px solid #e0e0e0;margin:24px 0">
+
+  <p>Follow us for tournament updates:</p>
+  <ul>
+    <li>Instagram — <a href="https://instagram.com/couchcup" style="color:#db1230">@couchcup</a></li>
+    <li>TikTok — <a href="https://tiktok.com/@couchcup" style="color:#db1230">@couchcup</a></li>
+  </ul>
+
+  <p style="margin-bottom:4px">See you on the pitch,</p>
+  <p style="margin-top:0"><strong>The Couch Cup Team</strong><br>
+  <a href="https://couchcup.co.za" style="color:#db1230">couchcup.co.za</a></p>
+
+</div>
+</body>
+</html>
