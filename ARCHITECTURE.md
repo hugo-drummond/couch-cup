@@ -249,7 +249,7 @@ RLS is enabled on all 22. Note that the secret key bypasses it, so for the serve
 
 ## Known limitations
 
-- **`participants` and `players` coexist.** Season 1 used the former; Season 2 introduced the latter plus `waitlist_entries`. Some paths still read the old table. The `psn_id` → `gaming_id` rename is likewise partial. Migrating mid-season risks breaking a live tournament, so it waits for a gap between seasons.
+- **`participants` and `players` coexist.** Season 1 used the former; the multi-season schema introduced the latter plus `waitlist_entries`. Some paths still read the old table. The `psn_id` → `gaming_id` rename is likewise partial. Migrating mid-season risks breaking a live tournament, so it waits for a gap between seasons.
 - **`release-round-alerts.ts` has a zero-width-window bug** at the round-release path, still open.
 - **No automated tests.** Solo project; the tournament engine is verified by simulation scripts in `site3/scripts/` (`sim-scheduling.mjs`, `test-opponent-flow.mjs`) rather than a test suite. Given how much branching logic sits in the deadline handling, this is the gap I'd close first.
 - **The `sql()` helper returns empty on error.** Good for uptime — the site never 500s — but it converts configuration mistakes into silent, hard-to-diagnose blankness.

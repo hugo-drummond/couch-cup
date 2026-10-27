@@ -4,7 +4,7 @@
 
 Players sign up, get drawn into a bracket, and are then handed to an automated system that pairs them with an opponent, negotiates a match time out of both players' availability, opens a scoring window, resolves the result, and advances the bracket — sending the right email at each step. A tournament runs to completion with very little human involvement.
 
-Season 1 (EA FC, 1v1) completed in July 2026. Season 2 — Fortnite Duos, R500 per player, free entry — is open for registration and runs 28 August 2026.
+Season 1 (EA FC, 1v1, free entry) ran start to finish on this system and completed in July 2026.
 
 **Live:** [couchcup.co.za](https://www.couchcup.co.za) · Designed, built and operated solo — product, engine, email, infrastructure and the tournaments themselves.
 
@@ -98,14 +98,14 @@ If the bracket renders empty, check `SUPABASE_MANAGEMENT_TOKEN` first. A malform
 
 ## Status
 
-Season 1 finished 7 July 2026. Season 2 registration has been open since 11 July 2026.
+Season 1 finished 7 July 2026.
 
-The `tournament-advance` pg_cron job is **currently disabled** between seasons and must be re-enabled before Season 2 matches begin — with it off, nothing advances. A known zero-width-window bug in `release-round-alerts.ts` is still outstanding.
+The `tournament-advance` pg_cron job is disabled between tournaments and re-enabled when matches begin — with it off, nothing advances. A known zero-width-window bug in `release-round-alerts.ts` is still outstanding.
 
 ---
 
 ## A note on the schema
 
-Season 1 used a `participants` table; Season 2 added `players` + `waitlist_entries` to support multiple seasons. Both exist, and some paths still read the older table. The `psn_id` → `gaming_id` rename that came with going multi-game is likewise only partly done.
+Season 1 used a `participants` table; a later multi-season schema added `players` + `waitlist_entries`. Both exist, and some paths still read the older table. The `psn_id` → `gaming_id` rename that came with going multi-game is likewise only partly done.
 
 Left deliberately as-is rather than half-migrated in a way that could break a live tournament mid-season.
