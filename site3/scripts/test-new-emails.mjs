@@ -50,12 +50,12 @@ console.log(`✓ tournament + round 1: ${tournamentId}`)
 // Participants: Player One + Player Two
 const pA = await sql(`INSERT INTO public.participants (name, email, psn_id, status) VALUES ('Player One', 'player-one@example.com', 'PlayerOne_Test', 'bracket') RETURNING id`)
 const pB = await sql(`INSERT INTO public.participants (name, email, psn_id, status) VALUES ('Test Opponent', 'player-two@example.com', 'OpponentPSN_Test', 'bracket') RETURNING id`)
-const [hugoId, antId] = [pA[0].id, pB[0].id]
-console.log(`✓ participants A=${hugoId} B=${antId}`)
+const [playerAId, playerBId] = [pA[0].id, pB[0].id]
+console.log(`✓ participants A=${playerAId} B=${playerBId}`)
 
 // --- TEST 1: invite-role + 2h reminder ---
 // bracket active, scheduled in 2h, 2h reminder not yet sent, no invite sender chosen
-const b1 = await sql(`INSERT INTO public.brackets (tournament_id, round_number, position, participant_a_id, participant_b_id, status) VALUES ('${tournamentId}', 1, 1, '${hugoId}', '${antId}', 'active') RETURNING id`)
+const b1 = await sql(`INSERT INTO public.brackets (tournament_id, round_number, position, participant_a_id, participant_b_id, status) VALUES ('${tournamentId}', 1, 1, '${playerAId}', '${playerBId}', 'active') RETURNING id`)
 const bracket1 = b1[0].id
 await sql(`INSERT INTO public.scheduled_matches (match_id, scheduled_at, confirmed_at, reminder_24h_sent, reminder_2h_sent, score_window_open_sent) VALUES ('${bracket1}', now() + interval '2 hours', now(), true, false, true)`)
 console.log(`✓ test 1 bracket (invite-role): ${bracket1}`)
@@ -65,10 +65,10 @@ console.log(`✓ test 1 bracket (invite-role): ${bracket1}`)
 // Insert NOT-yet-expired so the live 15-min pg_cron can't catch it with 0 reports
 // (that race hits the 0-reports branch). Add both reports, THEN flip score_due to the
 // past so it only becomes eligible once both draws exist.
-const b2 = await sql(`INSERT INTO public.brackets (tournament_id, round_number, position, participant_a_id, participant_b_id, status, score_due_at) VALUES ('${tournamentId}', 1, 2, '${hugoId}', '${antId}', 'active', now() + interval '10 minutes') RETURNING id`)
+const b2 = await sql(`INSERT INTO public.brackets (tournament_id, round_number, position, participant_a_id, participant_b_id, status, score_due_at) VALUES ('${tournamentId}', 1, 2, '${playerAId}', '${playerBId}', 'active', now() + interval '10 minutes') RETURNING id`)
 const bracket2 = b2[0].id
-await sql(`INSERT INTO public.score_reports (bracket_id, reporter_id, claimed_winner, score_reporter, score_opponent, went_to_penalties) VALUES ('${bracket2}', '${hugoId}', NULL, 2, 2, false)`)
-await sql(`INSERT INTO public.score_reports (bracket_id, reporter_id, claimed_winner, score_reporter, score_opponent, went_to_penalties) VALUES ('${bracket2}', '${antId}', NULL, 2, 2, false)`)
+await sql(`INSERT INTO public.score_reports (bracket_id, reporter_id, claimed_winner, score_reporter, score_opponent, went_to_penalties) VALUES ('${bracket2}', '${playerAId}', NULL, 2, 2, false)`)
+await sql(`INSERT INTO public.score_reports (bracket_id, reporter_id, claimed_winner, score_reporter, score_opponent, went_to_penalties) VALUES ('${bracket2}', '${playerBId}', NULL, 2, 2, false)`)
 await sql(`UPDATE public.brackets SET score_due_at = now() - interval '5 minutes' WHERE id = '${bracket2}'`)
 console.log(`✓ test 2 bracket (rematch): ${bracket2}`)
 
